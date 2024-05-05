@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive</title>
+    <style>
+      .wrap {
+        width: 1000px;
+        margin: 50px auto;
+      }
+      header {
+        height: 100px;
+        background: blue;
+      }
+      section {
+        display: flex;
+        height: 200px;
+        background: pink;
+      }
+      nav {
+        flex-grow: 1;
+        background: red;
+      }
+      article {
+        flex-grow: 2;
+        background: violet;
+      }
+      aside {
+        flex-grow: 1;
+        background: cyan;
+      }
+      footer {
+        height: 100px;
+        background: green;
+      }
+      @media (max-width: 1000px) {
+        .wrap {
+          width: 100%;
+        }
+        section {
+          flex-wrap: wrap;
+          height: auto;
+        }
+        nav {
+          height: 50px;
+          width: 100%;
+        }
+        article,
+        aside {
+          height: 150px;
+          width: 50%;
+        }
+      }
+      @media (max-width: 600px) {
+        article,
+        aside {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header></header>
+      <section>
+        <nav></nav>
+        <article></article>
+        <aside></aside>
+      </section>
+      <footer></footer>
+    </div>
+  </body>
+</html>

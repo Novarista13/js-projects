@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content</title>
+  </head>
+  <body>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat, iure sit
+      quia hic non quaerat.
+    </p>
+    <button>Change Text</button>
+
+    <script>
+      document.querySelector("button").onclick = function () {
+        let p = document.querySelector("p");
+        p.textContent = "You're success";
+        p.style.background = "cyan";
+        p.style.padding = "30px";
+        p.style.border = "1px solid blue";
+      };
+    </script>
+  </body>
+</html>

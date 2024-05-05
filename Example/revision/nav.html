@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nav</title>
+    <style>
+      .nav {
+        display: flex;
+        list-style: none;
+        background: rebeccapurple;
+        padding: 0;
+        padding-top: 20px;
+        margin: 0;
+      }
+      .tab {
+        background: white;
+        padding: 8px 25px;
+        margin-left: 12px;
+        border-radius: 10px 10px 0 0;
+        cursor: pointer;
+      }
+      #tab2 {
+        opacity: 0.5;
+      }
+      .box {
+        padding: 12px;
+        border: 2px solid rebeccapurple;
+        border-top: 0;
+        min-height: 300px;
+      }
+      #box2 {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="nav">
+      <li class="tab" id="tab1">Tab One</li>
+      <li class="tab" id="tab2">Tab Two</li>
+    </ul>
+    <div class="box" id="box1">Lorem ipsum dolor sit amet.</div>
+    <div class="box" id="box2">Box Two</div>
+
+    <script>
+      document.querySelector("#tab1").onclick = tabOne;
+      document.querySelector("#tab2").onclick = tabTwo;
+
+      function tabOne() {
+        document.querySelector("#tab1").style.opacity = "1";
+        document.querySelector("#tab2").style.opacity = "0.5";
+        document.querySelector("#box1").style.display = "block";
+        document.querySelector("#box2").style.display = "none";
+      }
+      function tabTwo() {
+        document.querySelector("#tab1").style.opacity = "0.5";
+        document.querySelector("#tab2").style.opacity = "1";
+        document.querySelector("#box1").style.display = "none";
+        document.querySelector("#box2").style.display = "block";
+      }
+    </script>
+  </body>
+</html>

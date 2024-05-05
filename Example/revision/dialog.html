@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dialog</title>
+    <style>
+      html {
+        background: white;
+      }
+      body {
+        margin: 20px auto;
+        width: 1000px;
+        padding: 20px;
+        min-height: 500px;
+        background-color: aquamarine;
+        border: 1px solid blue;
+      }
+      #backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: black;
+        opacity: 0.8;
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+      #dialog {
+        position: absolute;
+        top: 15%;
+        left: 30%;
+        width: 40%;
+        min-height: 300px;
+        background-color: white;
+        border: 1px solid blue;
+      }
+      #dialog h2 {
+        background-color: aquamarine;
+        margin: 0;
+        padding: 10px;
+      }
+      #dialog a {
+        float: right;
+        padding: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Home Page</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <button>Dialog</button>
+
+    <div id="backdrop">
+      <div id="dialog">
+        <h2>Dialog Title <a href="#">&times;</a></h2>
+      </div>
+    </div>
+
+    <script>
+      document.querySelector("button").onclick = function () {
+        document.querySelector("#backdrop").style.display = "block";
+      };
+      document.querySelector("a").onclick = function () {
+        document.querySelector("#backdrop").style.display = "none";
+      };
+      document.querySelector("#backdrop").onclick = function () {
+        document.querySelector("#backdrop").style.display = "none";
+      };
+    </script>
+  </body>
+</html>

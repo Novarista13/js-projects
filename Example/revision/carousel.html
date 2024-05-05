@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel</title>
+    <style>
+      .wrap {
+        width: 1000px;
+        position: relative;
+        margin: 20px auto;
+      }
+      .wrap button {
+        position: absolute;
+        top: 43%;
+        background: transparent;
+        border: 0;
+        font-size: 2em;
+      }
+      #prev {
+        left: 20px;
+      }
+      #next {
+        right: 20px;
+      }
+      .box {
+        height: 200px;
+        text-align: center;
+        line-height: 200px;
+        font-size: 2em;
+      }
+      #box1 {
+        background-color: aquamarine;
+      }
+      #box2 {
+        background-color: bisque;
+        display: none;
+      }
+      #box3 {
+        background-color: brown;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <button id="prev">&laquo;</button>
+      <button id="next">&raquo;</button>
+      <div class="box" id="box1">1</div>
+      <div class="box" id="box2">2</div>
+      <div class="box" id="box3">3</div>
+    </div>
+
+    <script>
+      document.querySelector("#prev").onclick = prev;
+      document.querySelector("#next").onclick = next;
+
+      setInterval(next, 3000);
+      let box = 1;
+
+      function prev() {
+        document.querySelector("#box" + box).style.display = "none";
+        box--;
+        if (box < 1) box = 3;
+        document.querySelector("#box" + box).style.display = "block";
+      }
+
+      function next() {
+        document.querySelector("#box" + box).style.display = "none";
+        box++;
+        if (box > 3) box = 1;
+        document.querySelector("#box" + box).style.display = "block";
+      }
+    </script>
+  </body>
+</html>

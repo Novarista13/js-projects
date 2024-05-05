@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dialog</title>
+    <style>
+      html {
+        background: white;
+      }
+      body {
+        margin: 20px auto;
+        width: 1000px;
+        min-height: 500px;
+        background: cyan;
+        padding: 20px;
+        border: 5px solid darkcyan;
+      }
+      #backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        opacity: 0.8;
+        display: none;
+      }
+      #backdrop:target {
+        display: block;
+      }
+      #dialog {
+        position: absolute;
+        top: 15%;
+        left: 30%;
+        width: 40%;
+        background: white;
+        min-height: 250px;
+        border: 2px solid darkcyan;
+        /* display: none; */
+      }
+      #dialog h2 {
+        font-size: 21px;
+        padding: 8px;
+        margin: 0;
+        background: darkcyan;
+      }
+      #dialog h2 a {
+        float: right;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Home Page</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <button>Button</button>
+
+    <div id="backdrop">
+      <div id="dialog">
+        <h2>Dialog Title <a href="#">&times;</a></h2>
+      </div>
+    </div>
+
+    <script>
+      document.querySelector("button").onclick = function () {
+        document.querySelector("#backdrop").style.display = "block";
+        document.querySelector("#dialog").style.display = "block";
+      };
+      document.querySelector("#backdrop").onclick = function () {
+        document.querySelector("#backdrop").style.display = "none";
+        document.querySelector("#dialog").style.display = "none";
+      };
+      document.querySelector("#dialog h2 a").onclick = function () {
+        document.querySelector("#backdrop").onclick();
+      };
+    </script>
+  </body>
+</html>

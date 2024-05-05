@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS</title>
+  </head>
+  <body>
+    <script>
+      // let honda = {
+      //   color: "Red",
+      //   drive: function () {
+      //     console.log(`${this.color} Honda is driving.`);
+      //   },
+      // };
+      // honda.drive();
+
+      // class Car {
+      //   color = "Black";
+      //   constructor(name) {
+      //     this.name = name;
+      //   }
+      //   drive() {
+      //     console.log(`${this.color} ${this.name} is driving.`);
+      //   }
+      // }
+
+      // class Nissan extends Car {
+      //   wheels = 5;
+      // }
+
+      // let car = new Nissan("Nissan");
+      // car.drive();
+
+      // let num = [0, 1, 2, 3, 4];
+
+      // let result = num.map((n) => n + 1).filter((n) => n % 2);
+      // console.log(result);
+
+      // let filter = num.filter((n) => n % 2);
+      // console.log(filter);
+
+      // let reduce = num.reduce((a, n) => a + n);
+      // console.log(reduce);
+
+      function add100() {
+        let result = 0;
+        for (let i = 0; i < 100; i++) {
+          result += i;
+        }
+        return result;
+      }
+
+      function addLater() {
+        return new Promise((resolve, reject) => {
+          let result = add100();
+
+          if (result) resolve(result);
+          else reject();
+        });
+      }
+
+      console.log("some processes");
+      addLater()
+        .then((result) => console.log(result))
+        .catch(() => console.log("Error!!"));
+      console.log("finish processes");
+    </script>
+  </body>
+</html>

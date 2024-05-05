@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+  </head>
+  <body>
+    <nav class="navbar bg-danger navbar-dark">
+      <div class="container" style="max-width: 800px">
+        <a href="#" class="navbar-brand"
+          >Todo
+          <span class="badge bg-dark" id="count">0</span>
+        </a>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="#" id="clear" class="nav-link">Clear</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-4" style="max-width: 800px">
+      <div class="input-group mb-4">
+        <input type="text" id="new" class="form-control" />
+        <button class="btn btn-danger">Add</button>
+      </div>
+      <ul id="todo" class="list-group"></ul>
+      <hr />
+      <ul id="done" class="list-group opacity-50"></ul>
+    </div>
+
+    <script>
+      
+      function getData() {
+        return JSON.parse(localStorage.getItem("data")) || [];
+      }
+
+      let data = getData();
+      data.map((item) => createTask(item.text, item.done));
+
+      function saveData(text) {
+        let data = getData();
+        data.push({ text, done: false });
+        localStorage.setItem("data", JSON.stringify(data));
+      }
+
+      function removeData(text) {
+        let data = getData();
+        let result = data.filter((item) => item.text != text);
+        localStorage.setItem("data", JSON.stringify(result));
+      }
+
+      function checkData(text) {
+        let data = getData();
+        let result = data.map((item) => {
+          if (item.text == text) item.done = true;
+          return item;
+        });
+
+        localStorage.setItem("data", JSON.stringify(result));
+      }
+
+      document.querySelector("#new").focus();
+
+      document.querySelector("button").onclick = function () {
+        let text = document.querySelector("#new").value;
+        if (!text) return false;
+
+        createTask(text, (done = false));
+        saveData(text, done);
+        updateCount();
+
+        document.querySelector("#new").value = "";
+        document.querySelector("#new").focus();
+      };
+
+      document.querySelector("#new").onkeydown = function (e) {
+        if (e.key == "Enter") {
+          document.querySelector("button").onclick();
+        }
+      };
+
+      document.querySelector("#clear").onclick = function () {
+        document.querySelector("#done").innerHTML = "";
+        let data = getData();
+        let result = data.filter((item) => item.done != true);
+        localStorage.setItem("data", JSON.stringify(result));
+      };
+
+      function updateCount() {
+        document.querySelector("#count").textContent =
+          document.querySelectorAll("#todo li").length;
+      }
+
+      function createTask(text, done) {
+        let li = document.createElement("li");
+        li.classList.add("list-group-item");
+        li.textContent = text;
+
+        let del = document.createElement("a");
+        del.setAttribute("href", "#");
+        del.classList.add("fa-solid", "fa-trash", "float-end", "text-warning");
+        del.onclick = function () {
+          del.parentElement.remove();
+          removeData(text);
+          updateCount();
+        };
+        li.appendChild(del);
+
+        let check = document.createElement("a");
+        check.setAttribute("href", "#");
+        check.classList.add("fa-solid", "fa-check", "float-start", "me-3");
+        check.onclick = function () {
+          document.querySelector("#done").appendChild(check.parentElement);
+          check.remove();
+          checkData(text);
+          updateCount();
+        };
+        li.appendChild(check);
+
+        if (done == false) {
+          document.querySelector("#todo").appendChild(li);
+          updateCount();
+        } else {
+          document.querySelector("#done").appendChild(li);
+          check.remove();
+        }
+      }
+    </script>
+  </body>
+</html>
